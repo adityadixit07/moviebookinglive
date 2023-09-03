@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllMovies } from "../../helpers/api-helpers";
-import CradLayout from "./CradLayout";
+import CardLayout from "./CardLayout";
 
 const HomeLayout = () => {
   const [movies, setMovies] = useState();
@@ -39,7 +39,7 @@ const HomeLayout = () => {
           movies
             .slice(0, 4)
             .map((movie, index) => (
-              <CradLayout
+              <CardLayout
                 id={movie._id}
                 title={movie.title}
                 releaseDate={movie.releaseDate}

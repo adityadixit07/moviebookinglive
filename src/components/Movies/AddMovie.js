@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { addMovie } from "../../api-helpers/api-helpers";
+import { toast } from "react-toastify";
 const labelProps = {
   mt: 1,
   mb: 1,
@@ -31,6 +32,7 @@ const AddMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs, actors);
+    toast.success("movie added succesfully")
     addMovie({ ...inputs, actors })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));

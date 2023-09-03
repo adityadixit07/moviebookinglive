@@ -9,13 +9,13 @@ const Auth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onResReceived = (data) => {
-    console.log(data);
+    // console.log(data);
     dispatch(userActions.login());
     localStorage.setItem("userId", data.id);
     navigate("/");
   };
   const getData = (data) => {
-    console.log(data);
+    // console.log(data);
     sendUserAuthRequest(data.inputs, data.signup)
       .then(onResReceived)
       .catch((err) => console.log(err));

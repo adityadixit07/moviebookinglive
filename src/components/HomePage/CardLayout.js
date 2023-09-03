@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CradLayout = ({ title, description, releaseDate, posterUrl, id }) => {
+const CardLayout = ({ title, description, releaseDate, posterUrl, id }) => {
   return (
     <Card
       sx={{
@@ -57,4 +57,4 @@ const CradLayout = ({ title, description, releaseDate, posterUrl, id }) => {
   );
 };
 
-export default CradLayout;
+export default CardLayout;

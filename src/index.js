@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { ToastContainer } from "react-toastify";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // backend server
 axios.defaults.baseURL = "https://moviebookingserver.onrender.com";
@@ -14,6 +15,7 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <App />
+        <ToastContainer />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

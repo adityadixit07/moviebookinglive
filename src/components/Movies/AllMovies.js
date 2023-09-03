@@ -2,10 +2,11 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { getAllMovies } from "../../helpers/api-helpers";
-import CradLayout from "../HomePage/CradLayout";
+import CardLayout from "../HomePage/CardLayout";
 
 const AllMovies = () => {
   const [movies, setMovies] = useState();
+
   useEffect(() => {
     getAllMovies()
       .then((data) => setMovies(data))
@@ -26,7 +27,7 @@ const AllMovies = () => {
       >
         {movies &&
           movies.map((movie, index) => (
-            <CradLayout
+            <CardLayout
               id={movie._id}
               title={movie.title}
               releaseDate={movie.releaseDate}
