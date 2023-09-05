@@ -14,6 +14,7 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { toast } from "react-toastify";
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
   const [user, setUser] = useState();
@@ -28,7 +29,18 @@ const UserProfile = () => {
   }, []);
   const handleDelete = (id) => {
     deleteBooking(id)
-      .then((res) => console.log(res))
+      // .then(
+      //   (res) => console.log(res),
+      //   toast.success("Movie deleted successfully")
+      // )
+      .then((res) => {
+        // Filter out the deleted booking from the state
+        const updatedBookings = bookings.filter(
+          (booking) => booking._id !== id
+        );
+        setBookings(updatedBookings);
+        toast.success("Movie deleted successfully");
+      })
       .catch((err) => console.log(err));
   };
   return (
@@ -87,7 +99,7 @@ const UserProfile = () => {
                 {bookings.map((booking, index) => (
                   <ListItem
                     sx={{
-                      bgcolor: "#00d386",
+                      bgcolor: "#39535b",
                       color: "white",
                       textAlign: "center",
                       margin: 1,
@@ -110,9 +122,9 @@ const UserProfile = () => {
                     </ListItemText>
                     <IconButton
                       onClick={() => handleDelete(booking._id)}
-                      color="error"
+                      color="warning"
                     >
-                      <DeleteForeverIcon />
+                      <DeleteForeverIcon sx={{ fontSize: "2rem" }} />
                     </IconButton>
                   </ListItem>
                 ))}

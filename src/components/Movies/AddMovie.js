@@ -32,7 +32,7 @@ const AddMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs, actors);
-    toast.success("movie added succesfully")
+    toast.success("Movie added succesfully")
     addMovie({ ...inputs, actors })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+
 export const getAllMovies = async () => {
   const res = await axios.get("/movie").catch((err) => console.log(err));
   if (res.status !== 200) {
@@ -34,7 +36,7 @@ export const sendAdminAuthRequest = async (data) => {
     .catch((err) => console.log(err));
 
   if (res.status !== 200) {
-    return console.log("Unexpectyed Error");
+    return console.log("Unexpected Error");
   }
 
   const resData = await res.data;
@@ -125,6 +127,7 @@ export const addMovie = async (data) => {
     .catch((err) => console.log(err));
 
   if (res.status !== 201) {
+    toast.error("Unexpected error occured");
     return console.log("Unexpected Error Occurred");
   }
 
@@ -139,6 +142,7 @@ export const getAdminById = async () => {
     .catch((err) => console.log(err));
 
   if (res.status !== 200) {
+    toast.error("Unexpected error occured");
     return console.log("Unexpected Error Occurred");
   }
 

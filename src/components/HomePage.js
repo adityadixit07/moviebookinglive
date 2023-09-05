@@ -18,7 +18,7 @@ const HomePage = () => {
           src="https://i.ytimg.com/vi/bweRG6WueuM/maxresdefault.jpg"
           alt="Brahmastra"
           width={"100%"}
-          height={"100%"}
+          height={"96%"}
         />
       </Box>
       <Box padding={5} margin="auto">

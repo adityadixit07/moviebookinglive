@@ -1,13 +1,15 @@
 import { Button, FormLabel, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { Fragment, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getMovieDetails, newBooking } from "../../api-helpers/api-helpers";
+import { toast } from "react-toastify";
 
 const Booking = () => {
   const [movie, setMovie] = useState();
   const [inputs, setInputs] = useState({ seatNumber: "", date: "" });
   const id = useParams().id;
+  const navigate = useNavigate();
   console.log(id);
 
   useEffect(() => {
@@ -24,10 +26,15 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
+
     newBooking({ ...inputs, movie: movie._id })
-      .then((res) => console.log(res))
+      .then((res) => console.log(res), toast.success("Booking confirmed 🎉"))
       .catch((err) => console.log(err));
+    navigate("/user");
   };
+  // const showMessage=()=>{
+  //   toast.success("Booking Confirmed")
+  // }
   return (
     <div>
       {movie && (
