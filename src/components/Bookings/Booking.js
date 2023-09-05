@@ -2,7 +2,10 @@ import { Button, FormLabel, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getMovieDetails, newBooking } from "../../api-helpers/api-helpers";
+import {
+  getMovieDetails,
+  newBooking,
+} from "../../api-helpers/api-helpers";
 import { toast } from "react-toastify";
 
 const Booking = () => {
@@ -26,9 +29,11 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
-
     newBooking({ ...inputs, movie: movie._id })
-      .then((res) => console.log(res), toast.success("Booking confirmed 🎉"))
+      .then(
+        (res) => console.log(res),
+        toast.success("Booking confirmed 🎉"),
+      )
       .catch((err) => console.log(err));
     navigate("/user");
   };

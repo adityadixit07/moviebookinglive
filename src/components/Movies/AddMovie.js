@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import { addMovie } from "../../api-helpers/api-helpers";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const labelProps = {
   mt: 1,
   mb: 1,
@@ -23,6 +24,7 @@ const AddMovie = () => {
   });
   const [actors, setActors] = useState([]);
   const [actor, setActor] = useState("");
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -32,9 +34,22 @@ const AddMovie = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs, actors);
-    toast.success("Movie added succesfully")
+    if (
+      !inputs.title ||
+      !inputs.description ||
+      !inputs.posterUrl ||
+      !inputs.releaseDate ||
+      actors.length === 0
+    ) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     addMovie({ ...inputs, actors })
-      .then((res) => console.log(res))
+      .then(
+        (res) => console.log(res),
+        toast.success("Added Successfully"),
+        navigate("/movies")
+      )
       .catch((err) => console.log(err));
   };
   return (

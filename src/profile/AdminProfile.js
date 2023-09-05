@@ -58,7 +58,7 @@ const AdminProfile = () => {
                 {admin.addedMovies.map((movie, index) => (
                   <ListItem
                     sx={{
-                      bgcolor: "#00d386",
+                      bgcolor: "#39535b",
                       color: "white",
                       textAlign: "center",
                       margin: 1,
