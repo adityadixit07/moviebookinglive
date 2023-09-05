@@ -32,6 +32,9 @@ const Header = () => {
   const handleChange = (e, val) => {
     const movie = movies.find((m) => m.title === val);
     console.log(movie);
+    // if (movie) {
+    //   navigate(`/booking/${movie._id}`);
+    // }
     if (isUserLoggedIn) {
       navigate(`/booking/${movie._id}`);
     }

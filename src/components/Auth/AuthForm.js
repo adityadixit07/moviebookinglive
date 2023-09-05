@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 const labelStyle = { mt: 1, mb: 1 };
 const AuthForm = ({ onSubmit, isAdmin }) => {
   const [inputs, setInputs] = useState({
@@ -26,6 +27,16 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (inputs.email.trim() === "" || inputs.password.trim() === "") {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
+    // For signup, also check the name field
+    if (!isAdmin && isSignup && inputs.name.trim() === "") {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     onSubmit({ inputs, signup: isAdmin ? false : isSignup });
   };
   return (
@@ -51,7 +62,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
           {!isAdmin && isSignup && (
             <>
               {" "}
-              <FormLabel sx={labelStyle}>Name</FormLabel>
+              <FormLabel sx={labelStyle}>Name*</FormLabel>
               <TextField
                 value={inputs.name}
                 onChange={handleChange}
@@ -62,7 +73,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
               />
             </>
           )}
-          <FormLabel sx={labelStyle}>Email</FormLabel>
+          <FormLabel sx={labelStyle}>Email*</FormLabel>
           <TextField
             value={inputs.email}
             onChange={handleChange}
@@ -71,7 +82,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
             type={"email"}
             name="email"
           />
-          <FormLabel sx={labelStyle}>Password</FormLabel>
+          <FormLabel sx={labelStyle}>Password*</FormLabel>
           <TextField
             value={inputs.password}
             onChange={handleChange}
@@ -85,6 +96,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
             type="submit"
             fullWidth
             variant="contained"
+            // onClick={toast.success(isSignup?"signup":"login")}
           >
             {isSignup ? "Signup" : "Login"}
           </Button>
@@ -97,6 +109,12 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
               Switch To {isSignup ? "Login" : "Signup"}
             </Button>
           )}
+          <Typography>
+            <Typography component={"span"} sx={{ color: "red" }}>
+              *
+            </Typography>{" "}
+            mark are mandatory
+          </Typography>
         </Box>
       </form>
     </Dialog>

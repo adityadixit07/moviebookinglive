@@ -54,7 +54,7 @@ const HomePage = () => {
           variant="outlined"
           sx={{ margin: "auto", color: "#2b2d42" }}
         >
-          View All Movies
+          See All Movies
         </Button>
       </Box>
     </Box>
