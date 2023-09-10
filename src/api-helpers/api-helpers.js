@@ -20,6 +20,7 @@ export const sendUserAuthRequest = async (data, signup) => {
     .catch((err) => console.log(err));
 
   if (res.status !== 200 && res.status !== 201) {
+    // toast.error("Please Enter Correct Details")
     console.log("Unexpected Error Occurred");
   }
 
@@ -36,6 +37,7 @@ export const sendAdminAuthRequest = async (data) => {
     .catch((err) => console.log(err));
 
   if (res.status !== 200) {
+    // toast.error("Please enter correct details")
     return console.log("Unexpected Error");
   }
 

@@ -2,10 +2,7 @@ import { Button, FormLabel, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { Fragment, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  getMovieDetails,
-  newBooking,
-} from "../../api-helpers/api-helpers";
+import { getMovieDetails, newBooking } from "../../api-helpers/api-helpers";
 import { toast } from "react-toastify";
 
 const Booking = () => {
@@ -28,18 +25,16 @@ const Booking = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
-    newBooking({ ...inputs, movie: movie._id })
-      .then(
-        (res) => console.log(res),
-        toast.success("Booking confirmed 🎉"),
-      )
-      .catch((err) => console.log(err));
-    navigate("/user");
+    if (!inputs.seatNumber || !inputs.date) {
+      toast.error("Please fill the booking details");
+    } else {
+      console.log(inputs);
+      newBooking({ ...inputs, movie: movie._id })
+        .then((res) => console.log(res), toast.success("Booking confirmed 🎉"))
+        .catch((err) => console.log(err));
+      navigate("/user");
+    }
   };
-  // const showMessage=()=>{
-  //   toast.success("Booking Confirmed")
-  // }
   return (
     <div>
       {movie && (
@@ -69,7 +64,7 @@ const Booking = () => {
               />
               <Box width={"80%"} marginTop={3} padding={2}>
                 <Typography paddingTop={2}>{movie.description}</Typography>
-                <Typography fontWeight={"bold"} marginTop={1}>
+                <Typography fontWeight={"bold"} marginTop={1} reqy>
                   Starrer:
                   {movie.actors.map((actor) => " " + actor + " ")}
                 </Typography>
