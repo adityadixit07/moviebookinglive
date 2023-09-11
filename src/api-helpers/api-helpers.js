@@ -10,22 +10,46 @@ export const getAllMovies = async () => {
   return data;
 };
 
+// send user auth request
 export const sendUserAuthRequest = async (data, signup) => {
-  const res = await axios
-    .post(`/user/${signup ? "signup" : "login"}`, {
-      name: signup ? data.name : "",
+  // const res = await axios
+  //   .post(`/user/${signup ? "signup" : "login"}`, {
+  //     name: signup ? data.name : "",
+  //     email: data.email,
+  //     password: data.password,
+  //   })
+  //   .catch(
+  //     (err) => console.log(err),
+  //     toast.error("Plesase provide correct credentials")
+  //   );
+
+  // if (res.status !== 200 && res.status !== 201) {
+  //   console.log("Unexpected Error Occurred");
+  // }
+
+  // const resData = await res.data;
+  // return resData;
+  try {
+    const res = await axios.post(`/user/${signup ? "signup" : "login"}`, {
+      name: signup ? data.name : "", // Use data.name here
       email: data.email,
       password: data.password,
-    })
-    .catch((err) => console.log(err));
+    });
 
-  if (res.status !== 200 && res.status !== 201) {
-    // toast.error("Please Enter Correct Details")
-    console.log("Unexpected Error Occurred");
+    if (res.status === 200 || res.status === 201) {
+      const resData = await res.data;
+      if (signup) {
+        toast.success(`${data.name} signup successfully`); // Use data.name here
+      } else {
+        toast.success(`${data.name} login successfully`); // Use data.name here
+      }
+      return resData;
+    } else {
+      console.log("Unexpected Error Occurred");
+    }
+  } catch (err) {
+    console.error(err);
   }
-
-  const resData = await res.data;
-  return resData;
 };
 
 export const sendAdminAuthRequest = async (data) => {
@@ -37,7 +61,6 @@ export const sendAdminAuthRequest = async (data) => {
     .catch((err) => console.log(err));
 
   if (res.status !== 200) {
-    // toast.error("Please enter correct details")
     return console.log("Unexpected Error");
   }
 
@@ -129,7 +152,6 @@ export const addMovie = async (data) => {
     .catch((err) => console.log(err));
 
   if (res.status !== 201) {
-    toast.error("Unexpected error occured");
     return console.log("Unexpected Error Occurred");
   }
 
@@ -144,7 +166,6 @@ export const getAdminById = async () => {
     .catch((err) => console.log(err));
 
   if (res.status !== 200) {
-    toast.error("Unexpected error occured");
     return console.log("Unexpected Error Occurred");
   }
 
