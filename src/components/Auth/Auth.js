@@ -18,7 +18,6 @@ const Auth = () => {
     sendUserAuthRequest(data.inputs, data.signup)
       .then(onResReceived)
       .catch((err) => console.log(err));
-
   };
 
   return (

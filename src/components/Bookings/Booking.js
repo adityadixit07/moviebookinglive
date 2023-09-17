@@ -99,7 +99,15 @@ const Booking = () => {
                     value={inputs.date}
                     onChange={handleChange}
                   />
-                  <Button type="submit" sx={{ mt: 3 }}>
+                  <Button
+                    type="submit"
+                    sx={{
+                      p: 1.5,
+                      mt: 5,
+                      bgcolor: "whitesmoke",
+                      fontWeight: "600",
+                    }}
+                  >
                     Book Now
                   </Button>
                 </Box>

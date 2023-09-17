@@ -50,7 +50,7 @@ const CardLayout = ({ title, description, releaseDate, posterUrl, id }) => {
             borderRadius: 5,
           }}
         >
-          Book Now
+          Book now
         </Button>
       </CardActions>
     </Card>

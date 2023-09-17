@@ -14,6 +14,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../store/user-slice";
 import { adminActions } from "../../store/admin-slice";
+
 const Header = () => {
   const navigate = useNavigate();
   const [selectedMovie, setSelectedMovie] = useState("");

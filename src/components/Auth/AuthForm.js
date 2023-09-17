@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   Dialog,
   FormLabel,
   IconButton,
@@ -19,6 +20,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
     password: "",
   });
   const [isSignup, setIsSignup] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
@@ -27,11 +29,11 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (inputs.email.trim() === "" || inputs.password.trim() === "") {
       toast.error("Please fill in all required fields.");
       return;
     }
-
     // For signup, also check the name field
     if (!isAdmin && isSignup && inputs.name.trim() === "") {
       toast.error("Please fill in all required fields.");
@@ -98,7 +100,14 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
             variant="contained"
             // onClick={toast.success(isSignup?"signup":"login")}
           >
-            {isSignup ? "Signup" : "Login"}
+            {/* {isSignup ? "Signup" : "Login"} */}
+            {loading ? (
+              <CircularProgress size={24} />
+            ) : isSignup ? (
+              "Signup"
+            ) : (
+              "Login"
+            )}
           </Button>
           {!isAdmin && (
             <Button
@@ -112,7 +121,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
           <Typography>
             <Typography component={"span"} sx={{ color: "red" }}>
               *
-            </Typography>{" "}
+            </Typography>
             mark are mandatory
           </Typography>
         </Box>

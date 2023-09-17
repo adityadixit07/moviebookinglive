@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // backend server
 axios.defaults.baseURL = "https://moviebookingserver.onrender.com";
+// axios.defaults.baseURL = "http://localhost:5000";
 root.render(
   <React.StrictMode>
     <BrowserRouter>

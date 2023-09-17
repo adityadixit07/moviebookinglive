@@ -6,11 +6,14 @@ import MovieItem from "./Movies/MovieItem";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
+  
   useEffect(() => {
     getAllMovies()
       .then((data) => setMovies(data.movies))
       .catch((err) => console.log(err));
   }, []);
+ 
+
   return (
     <Box width={"100%"} height="100%" margin="auto" marginTop={2}>
       <Box margin={"auto"} width="80%" height={"40vh"} padding={2}>
@@ -52,7 +55,7 @@ const HomePage = () => {
           LinkComponent={Link}
           to="/movies"
           variant="outlined"
-          sx={{ margin: "auto", color: "#2b2d42" }}
+          sx={{ margin: "auto", color: "#2b2d42", borderRadius: "20px" }}
         >
           See All Movies
         </Button>
