@@ -23,6 +23,7 @@ const Booking = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!inputs.seatNumber || !inputs.date) {
@@ -35,6 +36,7 @@ const Booking = () => {
       navigate("/user");
     }
   };
+
   return (
     <div>
       {movie && (

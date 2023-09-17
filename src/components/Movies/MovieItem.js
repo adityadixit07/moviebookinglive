@@ -19,9 +19,9 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
       toast.error("Please login to Book movie");
       navigate("/auth");
     }
-    if (isUserLoggedIn) {
-      navigate(`booking/${id}`);
-    }
+    // if (isUserLoggedIn) {
+    //   navigate(`booking/${id}`);
+    // }
   };
 
   return (
