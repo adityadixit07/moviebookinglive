@@ -19,11 +19,11 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
       toast.error("Please login to Book movie");
       navigate("/auth");
     }
-    if(isUserLoggedIn){
-      navigate(`booking/${id}`)
+    if (isUserLoggedIn) {
+      navigate(`booking/${id}`);
     }
   };
-  
+
   return (
     <Card
       sx={{
@@ -47,24 +47,26 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        {
-          isAdminLoggedIn?"":<Button
-          variant="contained"
-          fullWidth
-          LinkComponent={Link}
-          to={isUserLoggedIn ? `booking/${id}` : "/auth"}
-          sx={{
-            margin: "auto",
-            bgcolor: "#2b2d42",
-            ":hover": {
-              bgcolor: "#121217",
-            },
-          }}
-          onClick={handleBookClick}
-        >
-          Book
-        </Button>
-        }
+        {isAdminLoggedIn ? (
+          ""
+        ) : (
+          <Button
+            variant="contained"
+            fullWidth
+            LinkComponent={Link}
+            to={isUserLoggedIn ? `booking/${id}` : "/auth"}
+            sx={{
+              margin: "auto",
+              bgcolor: "#2b2d42",
+              ":hover": {
+                bgcolor: "#121217",
+              },
+            }}
+            onClick={handleBookClick}
+          >
+            Book
+          </Button>
+        )}
       </CardActions>
     </Card>
   );
