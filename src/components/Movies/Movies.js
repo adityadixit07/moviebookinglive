@@ -16,12 +16,13 @@ const Movies = () => {
     <Box margin={"auto"} marginTop={4}>
       <Typography
         margin={"auto"}
-        variant="h4"
+        variant="h5"
         padding={2}
-        width="40%"
+        width="20%"
         bgcolor={"#900C3F"}
         color="white"
         textAlign={"center"}
+        borderRadius={"30px"}
       >
         All Movies
       </Typography>

@@ -7,6 +7,7 @@ import {
 } from "../api-helpers/api-helpers";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
+  Button,
   IconButton,
   List,
   ListItem,
@@ -15,6 +16,7 @@ import {
 } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 const UserProfile = () => {
   const [bookings, setBookings] = useState();
   const [user, setUser] = useState();
@@ -95,40 +97,60 @@ const UserProfile = () => {
               flexDirection={"column"}
               width="80%"
             >
-              <List>
-                {bookings.map((booking, index) => (
-                  <ListItem
-                    sx={{
-                      bgcolor: "#39535b",
-                      color: "white",
-                      textAlign: "center",
-                      margin: 1,
-                    }}
-                  >
-                    <ListItemText
-                      sx={{ margin: 1, width: "auto", textAlign: "left" }}
+              {bookings.length === 0 ? (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "col",
+                    alignItems:'center'
+                  }}
+                >
+                  <Typography>No movies added </Typography>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHkD0SEUlXCxMlaPRg2apd5_9FUsaHZiP_rFmj6Tc2&s"
+                    alt="no-movie-found"
+                  />
+                  <Button LinkComponent={Link} to={"/"}>
+                    Add some Movies
+                  </Button>
+                </Box>
+              ) : (
+                <List>
+                  {bookings.map((booking, index) => (
+                    <ListItem
+                      sx={{
+                        bgcolor: "#39535b",
+                        color: "white",
+                        textAlign: "center",
+                        margin: 1,
+                      }}
                     >
-                      Movie: {booking.movie.title}
-                    </ListItemText>
-                    <ListItemText
-                      sx={{ margin: 1, width: "auto", textAlign: "left" }}
-                    >
-                      Seat: {booking.seatNumber}
-                    </ListItemText>
-                    <ListItemText
-                      sx={{ margin: 1, width: "auto", textAlign: "left" }}
-                    >
-                      Date: {new Date(booking.date).toDateString()}
-                    </ListItemText>
-                    <IconButton
-                      onClick={() => handleDelete(booking._id)}
-                      color="warning"
-                    >
-                      <DeleteForeverIcon sx={{ fontSize: "2rem" }} />
-                    </IconButton>
-                  </ListItem>
-                ))}
-              </List>
+                      <ListItemText
+                        sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                      >
+                        Movie: {booking.movie.title}
+                      </ListItemText>
+                      <ListItemText
+                        sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                      >
+                        Seat: {booking.seatNumber}
+                      </ListItemText>
+                      <ListItemText
+                        sx={{ margin: 1, width: "auto", textAlign: "left" }}
+                      >
+                        Date: {new Date(booking.date).toDateString()}
+                      </ListItemText>
+                      <IconButton
+                        onClick={() => handleDelete(booking._id)}
+                        color="warning"
+                      >
+                        <DeleteForeverIcon sx={{ fontSize: "2rem" }} />
+                      </IconButton>
+                    </ListItem>
+                  ))}
+                </List>
+              )}
             </Box>
           </Box>
         )}

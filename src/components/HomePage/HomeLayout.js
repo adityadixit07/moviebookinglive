@@ -14,11 +14,11 @@ const HomeLayout = () => {
   console.log(movies);
   return (
     <Box width="100%" height="100vh" marginTop={2} margin="auto">
-      <Box margin={"auto"} width="80%" height="40%" padding={2} display="flex">
+      <Box margin={"auto"} width="20%" height="40%" padding={2} display="flex">
         <img
           src="https://i.ytimg.com/vi/yEinBUJG2RI/maxresdefault.jpg"
           alt="Rocketry"
-          width="100%"
+          width="90%"
           height="100%"
         />
       </Box>

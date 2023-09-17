@@ -12,13 +12,18 @@ import { toast } from "react-toastify";
 
 const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
   const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const navigate=useNavigate();
-  const handleBookClick=()=>{
-    if(!isUserLoggedIn){
-      toast.error("Please login to Book movie")
-      navigate('/auth')
+  const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
+  const navigate = useNavigate();
+  const handleBookClick = (e, val) => {
+    if (!isUserLoggedIn) {
+      toast.error("Please login to Book movie");
+      navigate("/auth");
     }
-  }
+    if(isUserLoggedIn){
+      navigate(`booking/${id}`)
+    }
+  };
+  
   return (
     <Card
       sx={{
@@ -42,11 +47,12 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
+        {
+          isAdminLoggedIn?"":<Button
           variant="contained"
           fullWidth
           LinkComponent={Link}
-          to={isUserLoggedIn?`/booking/${id}`:"/auth"}
+          to={isUserLoggedIn ? `booking/${id}` : "/auth"}
           sx={{
             margin: "auto",
             bgcolor: "#2b2d42",
@@ -58,6 +64,7 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
         >
           Book
         </Button>
+        }
       </CardActions>
     </Card>
   );

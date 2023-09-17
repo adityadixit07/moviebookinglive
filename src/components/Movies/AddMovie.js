@@ -6,8 +6,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { addMovie } from "../../api-helpers/api-helpers";
+import React, { useEffect, useState } from "react";
+import { addMovie, getAllMovies } from "../../api-helpers/api-helpers";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const labelProps = {
@@ -52,6 +52,9 @@ const AddMovie = () => {
       )
       .catch((err) => console.log(err));
   };
+  useEffect(()=>{
+    getAllMovies();
+  },[])
   return (
     <div>
       <form onSubmit={handleSubmit}>
