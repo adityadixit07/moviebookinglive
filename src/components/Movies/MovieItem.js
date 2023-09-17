@@ -54,7 +54,7 @@ const MovieItem = ({ title, releaseDate, posterUrl, id }) => {
             variant="contained"
             fullWidth
             LinkComponent={Link}
-            to={isUserLoggedIn ? `booking/${id}` : "/auth"}
+            to={isUserLoggedIn ? `/booking/${id}` : "/auth"}
             sx={{
               margin: "auto",
               bgcolor: "#2b2d42",
